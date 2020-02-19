@@ -61,16 +61,14 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (! $token = Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Incorrect login credentials'], 401);
         }
 
-        //return $this->respondWithToken($token);
-        $user = User::where('email', $request->email)->get();
-        //$tokenInfo = $this->respondWithToken($token);
-        //$userInfo = (object)array_merge(Array($user[0]), Array($tokenInfo));
-        return response()->json([
-            'token' => $token,
-            'user' => $user
-        ], 200);
+        return $this->respondWithToken($token);
+        //$user = User::where('email', $request->email)->get();
+        //return response()->json([
+        //    'token' => $token,
+        //    'user' => $user
+        //], 200);
     }
 }
