@@ -65,6 +65,7 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+        //testing if login return user
         //$user = User::where('email', $request->email)->get();
         //return response()->json([
         //    'token' => $token,
