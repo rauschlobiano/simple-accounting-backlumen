@@ -1,5 +1,9 @@
 <?php
 
+
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
+// header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,18 +20,13 @@ $router->get('/', function () use ($router) {
     return 'Wazzup Lumen!';
 });
 // API route group
-$router->group(['prefix' => 'api'], function () use ($router) {   
-    $router->post('register', 'AuthController@register');    
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
     $router->get('profile', 'UserController@profile');
 
-    // Matches "/api/users/1
-    //get one user by id
     $router->get('users/{id}', 'UserController@singleUser');
-
-    $router->get('userinfo/{email}', 'UserController@getUser');    
-
-    // Matches "/api/users
+    $router->get('userinfo/{email}', 'UserController@getUser');
     $router->get('users', 'UserController@allUsers');
 
     $router->get('companyinfo/{id}', 'CompanyController@getCompany');
